@@ -1,10 +1,10 @@
-import routes from './routes'
-import * as reducers from './redux'
-import container from './Container'
+import routes from './routes';
+import * as reducers from './redux';
+import container from './Container';
 
 // "Favicon" must be imported on the client side too
 // since no assets are emitted on the server side
-export { default as icon } from '../assets/images/icon.png'
+export { default as icon } from '../assets/images/icon.png';
 
 export default
 	{
@@ -26,12 +26,12 @@ export default
 
 		// Default `<meta/>`.
 		meta: {
-			site_name: 'WebApp',
-			title: 'WebApp',
-			description: 'A generic web application boilerplate',
+			site_name: 'Nombre',
+			title: 'My name is...',
+			description: 'Build your own page for FREE!!!',
 			image: 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
 			locale: 'en_US',
-			locales: ['ru_RU', 'en_US']
+			locales: ['en_US']
 		},
 
 		onError,

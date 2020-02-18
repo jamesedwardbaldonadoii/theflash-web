@@ -1,20 +1,13 @@
-import React from 'react'
-
-import icon from '../../assets/images/icon.png'
+import React from 'react';
+import Register from '../components/auth/Register';
 
 
 export default function HomePage() {
 	return (
-		<section className="flex items-center justify-between">
-			<h1>
-				Husky
-			</h1>
-
-			<img
-				src={icon}
-				className="home-page-image" />
-		</section>
+		<div className="flex items-center justify-center">
+			<Register />
+		</div>
 	)
 }
 
-HomePage.meta = (state) => ({ title: 'Home' })
+// HomePage.meta = (state) => ({ title: 'Home' })

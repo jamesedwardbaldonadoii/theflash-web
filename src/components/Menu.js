@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-pages'
-import classNames from 'classnames'
+import React from 'react';
+import { Link } from 'react-pages';
+import classNames from 'classnames';
 
 export default function Menu({ className, children }) {
 	return (

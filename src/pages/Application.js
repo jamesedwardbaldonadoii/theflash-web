@@ -1,32 +1,23 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Loading } from 'react-pages'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Loading } from 'react-pages';
 
 // `react-time-ago` English language.
-import JavascriptTimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
-JavascriptTimeAgo.addLocale(en)
+import JavascriptTimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+JavascriptTimeAgo.addLocale(en);
 
-import Menu, { MenuLink } from '../components/Menu'
+import Navbar from '../components/navbar/index';
 
 export default function App({ children }) {
 	return (
-		<div className="flex flex-col h-screen bg-teal-700 overflow-hidden">
+		<div className="flex flex-col h-screen bg-teal-900 overflow-hidden">
 			{/* Page loading indicator */}
 			<Loading className="fixed bg-red-700 inset-0" />
 
 			<div className="webpage">
-				<nav className="webpage__header">
-					<Menu>
-						<MenuLink to="/" exact>
-							Home
-						</MenuLink>
-						<MenuLink to="/users">
-							Users
-						</MenuLink>
-					</Menu>
-				</nav>
+				<Navbar />
 
 				<div className="webpage__content">
 					{children}

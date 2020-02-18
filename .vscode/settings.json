@@ -1,4 +1,7 @@
 {
+  "editor.tabSize": 2,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": false,
   "css.validate": false,
   "scss.validate": false,
   "editor.formatOnPaste": true,

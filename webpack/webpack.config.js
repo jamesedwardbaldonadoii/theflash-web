@@ -31,57 +31,57 @@ module.exports = {
 
 	module: {
 		rules:
-		[{
-			test: /\.js$/,
-			exclude: /node_modules/,
-			use: [{
-				loader: 'babel-loader'
+			[{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: [{
+					loader: 'babel-loader'
+				}]
+			},
+			{
+				test: /\.(sa|sc|c)ss$/,
+				use: [{
+					loader: 'style-loader'
+				}, {
+					loader: 'css-loader',
+					options:
+					{
+						// The query parameter `importLoaders` allows to configure how many
+						// loaders before css-loader should be applied to @imported resources.
+						// `1` - `postcss-loader`.
+						importLoaders: 1,
+						sourceMap: true
+					}
+				}, {
+					loader: 'postcss-loader',
+					options: {
+						sourceMap: true,
+						plugins: (loader) => [
+							tailwindcss('./tailwind.config.js'),
+							autoprefixer(),
+						]
+					}
+				}, {
+					loader: 'sass-loader'
+				}]
+			},
+			{
+				test: /\.(jpg|png)$/,
+				use: [{
+					loader: 'url-loader',
+					options: {
+						// Any png-image or woff-font below or equal to 5K
+						// will be converted to inline base64 instead.
+						limit: 5120
+					}
+				}]
+			},
+			{
+				test: /\.(svg)$/,
+				use: [{
+					loader: 'svg-react-loader'
+				}]
 			}]
-		},
-		{
-			test: /\.(sa|sc|c)ss$/,
-			use: [{
-				loader: 'style-loader'
-			}, {
-				loader : 'css-loader',
-				options:
-				{
-					// The query parameter `importLoaders` allows to configure how many
-					// loaders before css-loader should be applied to @imported resources.
-					// `1` - `postcss-loader`.
-					importLoaders : 1,
-					sourceMap     : true
-				}
-			}, {
-				loader: 'postcss-loader',
-				options: {
-					sourceMap: true,
-					plugins: (loader) => [
-						tailwindcss('./tailwind.config.js'),
-						autoprefixer(),
-					]
-				}
-			}, {
-				loader: 'sass-loader'
-			}]
-		},
-		{
-			test: /\.(jpg|png)$/,
-			use: [{
-				loader : 'url-loader',
-				options: {
-					// Any png-image or woff-font below or equal to 5K
-					// will be converted to inline base64 instead.
-					limit: 5120
-				}
-			}]
-		},
-		{
-			test: /\.(svg)$/,
-			use: [{
-				loader: 'svg-react-loader'
-			}]
-		}]
 	},
 
 	// Hides "Entrypoint size exeeds the recommened limit (250kB)" warnings.
@@ -89,6 +89,9 @@ module.exports = {
 	performance: {
 		hints: false
 	},
+
+	// Fix failed source mapping on dev tools
+	devtool: 'source-map',
 
 	// Plugins will be added to this array by extending configurations.
 	plugins: [
