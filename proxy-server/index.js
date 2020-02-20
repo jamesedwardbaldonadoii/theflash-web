@@ -20,12 +20,10 @@ webserver.proxy('/api', `http://localhost:${setupConfig.api.port}`, { name: 'API
 webserver.proxy(`http://localhost:${setupConfig.pageServer.port}`, { name: 'Page rendering service' })
 
 // Start web server
-webserver.listen(setupConfig.webserver.port).then(() =>
-{
+webserver.listen(setupConfig.webserver.port).then(() => {
 	console.info(`Web server is listening`)
 	console.info(`Now go to http://localhost:${setupConfig.webserver.port}`)
 },
-(error) =>
-{
-	console.error(error)
-})
+	(error) => {
+		console.error(error)
+	})

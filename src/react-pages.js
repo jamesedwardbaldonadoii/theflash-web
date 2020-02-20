@@ -36,6 +36,15 @@ export default
 
 		onError,
 
+		authentication: {
+			accessToken({ getState, getCookie }) {
+				console.log(getState);
+				return localStorage.getItem('jwtToken');
+				// return getCookie('accessToken');
+				// return getState().authentication.accessToken;
+			}
+		},
+
 		http: {
 			transformUrl: (url, { server }) => {
 				// Pass all `api://` requests to the API server.

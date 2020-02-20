@@ -1,74 +1,84 @@
 import React, { useState, useCallback } from 'react';
 import { Link } from 'react-pages';
-import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import { useDispatch } from 'react-redux';
+import { useForm } from "react-hook-form";
 
-
-import { InputText, EmailInput, InputPassword } from '../0/Inputs';
+import { registerUser } from '../../redux/auth';
+import { InputText, InputEmail, InputPassword } from '../0/Inputs';
 
 export default function Register() {
 	const dispatch = useDispatch();
+	const { handleSubmit, register, errors } = useForm();
 
-	const [_name, setName] = useState('');
-	const [_email, setEmail] = useState('');
-	const [_password, setPassword] = useState('');
-	const [_password2, setPassword2] = useState('');
-	const [_errors, setErrors] = useState('');
+	const [isSaving, setIsSaving] = useState(false);
+	const [error, setErrors] = useState('');
 
-	const onRegisterUser = useCallback(async (e) => {
-		e.persist();
-		e.preventDefault();
-		console.log(e);
+	const onRegisterUser = useCallback(async (values) => {
+		setIsSaving(true);
+
+		try {
+			await dispatch(registerUser(values));
+			setIsSaving(false);
+		} catch (err) {
+			dispatch(notify(err.message, { type: 'error' }));
+			setErrors(err.response.body);
+			setIsSaving(false);
+		}
 	}, [dispatch]);
+
 
 	return (
 		<div className="w-full max-w-xs animate duration-500ms tada">
-			<form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={onRegisterUser}>
+			<form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(onRegisterUser)}>
 				<div className="mb-4">
 					<InputText
 						label="Name"
-						onChange={ev => setName(ev.target.value)}
-						value={_name}
-						error={_errors.name}
-						id="name"
-						placeholder="John Doe"
-					/>
+						name="name"
+						error={error.name}
+						register={register({
+							required: 'Required'
+						})}
+						placeholder="John Doe" />
 				</div>
 				<div className="mb-4">
-					<EmailInput
+					<InputEmail
 						label="Email"
-						onChange={ev => setEmail(ev.target.value)}
-						value={_email}
-						error={_errors.email}
-						id="email"
-					/>
+						name="email"
+						error={error.email || error.emailnotfound}
+						register={register({
+							required: 'Required',
+							pattern: {
+								value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+								message: "Invalid email address."
+							}
+						})} />
 				</div>
 				<div className="mb-4">
 					<InputPassword
 						label="Password"
-						onChange={ev => setPassword(ev.target.value)}
-						value={_password}
-						error={_errors.password}
-						id="password"
-					/>
+						name="password"
+						error={error.password}
+						register={register({
+							required: 'Required',
+							minLength: 6
+						})} />
 				</div>
 				<div className="mb-6">
 					<InputPassword
-						label="Confirm Password"
-						onChange={ev => setPassword2(ev.target.value)}
-						value={_password2}
-						error={_errors.password2}
-						id="password2"
-					/>
+						label="Password"
+						name="password2"
+						error={error.password}
+						register={register({
+							required: 'Required',
+							minLength: 6
+						})} />
 				</div>
 				<div className="flex items-center justify-between">
 					<button
 						type="submit"
-						className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-					>
+						className="bg-blue-500 hover:bg-blue-700 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
 						Sign up
-            </button>
+					</button>
 				</div>
 				<div className="align-baseline text-sm mt-3 text-center">
 					Already have an account? <Link className="text-blue-500 font-bold hover:text-blue-800" to="/login">Log in</Link>
@@ -76,7 +86,7 @@ export default function Register() {
 			</form>
 			<p className="text-center text-gray-500 text-xs">
 				&copy;2020 Nombre. All rights reserved.
-        </p>
+      </p>
 		</div>
 	)
 }

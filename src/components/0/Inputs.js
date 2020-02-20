@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import { useForm } from "react-hook-form";
 
-export function EmailInput({ value, error, id, label, onChange }) {
-
-	const onValueChange = e => {
-		onChange && onChange(e);
-	};
+export function InputEmail({ error, name, label, register }) {
 
 	return (
 		<React.Fragment>
 			{label &&
-				<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={id}>
+				<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={name}>
 					{label}
 				</label>
 			}
@@ -19,12 +16,11 @@ export function EmailInput({ value, error, id, label, onChange }) {
 				className={classnames("w-full py-2 px-3 rounded shadow z-50 appearance-none border roundedtext-gray-700 leading-tight focus:outline-none focus:border-blue-500", {
 					'border-red-500': error
 				})}
-				value={value}
+				ref={register}
+				name={name}
 				error={error}
-				id={id}
 				autoComplete="true"
-				placeholder="johndoe@email.com"
-				onChange={onValueChange} />
+				placeholder="johndoe@email.com" />
 
 			<span className="text-red-500 text-xs italic">
 				{error}
@@ -33,16 +29,12 @@ export function EmailInput({ value, error, id, label, onChange }) {
 	)
 }
 
-export function InputPassword({ value, error, id, label, onChange }) {
-
-	const onValueChange = e => {
-		onChange && onChange(e);
-	};
+export function InputPassword({ error, name, label, register }) {
 
 	return (
 		<React.Fragment>
 			{label &&
-				<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={id}>
+				<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={name}>
 					{label}
 				</label>
 			}
@@ -51,12 +43,11 @@ export function InputPassword({ value, error, id, label, onChange }) {
 				className={classnames("w-full py-2 px-3 rounded shadow z-50 appearance-none border roundedtext-gray-700 leading-tight focus:outline-none focus:border-blue-500", {
 					'border-red-500': error
 				})}
-				value={value}
+				name={name}
 				error={error}
-				id={id}
+				ref={register}
 				autoComplete="true"
-				placeholder="******************"
-				onChange={onValueChange} />
+				placeholder="******************" />
 
 			<span className="text-red-500 text-xs italic">
 				{error}
@@ -65,16 +56,11 @@ export function InputPassword({ value, error, id, label, onChange }) {
 	)
 }
 
-export function InputText({ value, error, id, placeholder, label, onChange }) {
-
-	const onValueChange = e => {
-		onChange && onChange(e);
-	};
-
+export function InputText({ error, name, label, register, placeholder }) {
 	return (
 		<React.Fragment>
 			{label &&
-				<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={id}>
+				<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={name}>
 					{label}
 				</label>
 			}
@@ -82,12 +68,11 @@ export function InputText({ value, error, id, placeholder, label, onChange }) {
 				className={classnames("w-full py-2 px-3 rounded shadow z-50 appearance-none border roundedtext-gray-700 leading-tight focus:outline-none focus:border-blue-500", {
 					'border-red-500': error
 				})}
-				value={value}
+				name={name}
 				error={error}
-				id={id}
+				ref={register}
 				autoComplete="true"
-				placeholder={placeholder || "Type something here..."}
-				onChange={onValueChange} />
+				placeholder={placeholder || "Type something here..."} />
 
 			<span className="text-red-500 text-xs italic">
 				{error}

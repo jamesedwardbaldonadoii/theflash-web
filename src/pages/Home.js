@@ -4,7 +4,7 @@ import Register from '../components/auth/Register';
 
 export default function HomePage() {
 	return (
-		<div className="flex items-center justify-center">
+		<div className="flex h-full items-center justify-center">
 			<Register />
 		</div>
 	)

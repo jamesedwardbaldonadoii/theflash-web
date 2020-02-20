@@ -2,9 +2,12 @@ import React, { useState, useCallback } from 'react';
 import { Link } from 'react-pages';
 import classnames from 'classnames';
 
+
+import Login from '../auth/Login';
 // Import Assets Needed
 import logo from '../../../assets/images/logo.png';
 import SearchIcon from '../../../assets/images/svg_icon/search.svg';
+import HamburgerIcon from '../../../assets/images/svg_icon/hamburger.svg';
 
 export default function Navbar() {
 	const [isShowLogin, setShowLogin] = useState(false);
@@ -17,7 +20,7 @@ export default function Navbar() {
 			</Link>
 			<div className="block lg:hidden">
 				<button className="flex items-center px-3 py-2 border rounded text-gray-700 border-gray-700 hover:border-gray-900 hover:text-gray-900">
-					<svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
+					<HamburgerIcon className="fill-current h-3 w-3" />
 				</button>
 			</div>
 			<div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
@@ -32,13 +35,11 @@ export default function Navbar() {
 				<div className={classnames("relative", { hidden: false })}>
 					<button onClick={() => setShowLogin(!isShowLogin)} className="inline-block text-sm px-4 py-2 leading-none border rounded text-gray-700 border-gray-700 hover:border-gray-900 hover:text-gray-900 mt-4 lg:mt-0" >
 						Login
-						</button>
+					</button>
 
 					{isShowLogin &&
 						<div className="w-64 mt-1 absolute right-0 rounded animated bounceInRight duration-500ms">
-							{/* <Login /> */}
-
-							Login Here
+							<Login />
 						</div>
 					}
 				</div>

@@ -12,14 +12,14 @@ import Navbar from '../components/navbar/index';
 
 export default function App({ children }) {
 	return (
-		<div className="flex flex-col h-screen bg-teal-900 overflow-hidden">
+		<div className="h-screen overflow-hidden">
 			{/* Page loading indicator */}
-			<Loading className="fixed bg-red-700 inset-0" />
+			<Loading />
 
-			<div className="webpage">
+			<div className="flex flex-col bg-gray-100 h-full d webpage">
 				<Navbar />
 
-				<div className="webpage__content">
+				<div className="flex-grow webpage__content">
 					{children}
 				</div>
 

@@ -27,20 +27,20 @@ export const devServerConfig = {
 	}, {
 		context: '/api',
 		target: `${setupConfig.api.secure ? 'https' : 'http'}://${setupConfig.api.host || 'localhost'}:${setupConfig.api.port}`,
-		pathRewrite: { '^/api' : '' }
-  }],
+		pathRewrite: { '^/api': '' }
+	}],
 
- 	// This is just for forcing `webpack-dev-server`
- 	// to not disable proxying for root path (`/`).
-  index: '',
+	// This is just for forcing `webpack-dev-server`
+	// to not disable proxying for root path (`/`).
+	index: '',
 
 	// Uncomment if using `index.html` instead of Server-Side Rendering.
 	// https://webpack.js.org/configuration/dev-server/#devserver-historyapifallback
 	// historyApiFallback: true,
 
-  headers: {
-    'Access-Control-Allow-Origin': '*'
-  }
+	headers: {
+		'Access-Control-Allow-Origin': '*'
+	}
 }
 
 // Modifies webpack configuration to get all files
