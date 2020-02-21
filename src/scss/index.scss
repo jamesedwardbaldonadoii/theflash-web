@@ -2,11 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "~animate.css/animate.min.css";
+@import "./icons";
 
 // General Custom styling
-.bg-1 {
-    background-image: url('/public/images/bg-0.jpg');
-}
 .duration-500ms {
   animation-duration: 500ms;
 }

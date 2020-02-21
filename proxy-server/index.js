@@ -14,7 +14,7 @@ webserver.files('/assets', path.join(__dirname, '../build/assets'))
 // Wouldn't do it in a real-world app
 // and would just query the API directly
 // but Chrome won't allow that for `localhost`.
-webserver.proxy('/api', `http://localhost:${setupConfig.api.port}`, { name: 'API service' })
+webserver.proxy('/api', `http://${setupConfig.api.host}:${setupConfig.api.port}`, { name: 'API service' })
 
 // Proxy all the rest requests to Webpage rendering server.
 webserver.proxy(`http://localhost:${setupConfig.pageServer.port}`, { name: 'Page rendering service' })

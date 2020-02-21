@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 
 import { registerUser } from '../../redux/auth';
+import { notify } from '../../redux/notifications';
 import { InputText, InputEmail, InputPassword } from '../0/Inputs';
 
 export default function Register() {

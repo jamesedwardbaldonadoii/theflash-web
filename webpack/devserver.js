@@ -1,6 +1,7 @@
 import setupConfig from '../configuration/setup'
 
 const PORT = setupConfig.webpackDevServer.port
+const HOST = setupConfig.webpackDevServer.host
 
 // `webpack-dev-server` settings.
 export const devServerConfig = {
